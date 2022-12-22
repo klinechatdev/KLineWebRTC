@@ -10,9 +10,9 @@ extension ObservableObject where Self.ObjectWillChangePublisher == ObservableObj
 }
 
 // This class contains the logic to control behavior of the whole app.
-public class RtcAppContext: ObservableObject {
+public class RTCAppContext: ObservableObject {
 
-    private let store: ValueStore<Preferences>
+    public let store: ValueStore<Preferences>
 
     @Published var videoViewVisible: Bool = true {
         didSet { store.value.videoViewVisible = videoViewVisible }

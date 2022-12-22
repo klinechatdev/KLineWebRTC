@@ -1,7 +1,7 @@
 import SwiftUI
 import LiveKit
 
-struct ConnectionHistory: Codable {
+public struct ConnectionHistory: Codable {
 
     let updated: Date
     let url: String
@@ -15,19 +15,19 @@ struct ConnectionHistory: Codable {
 
 extension ConnectionHistory: Identifiable {
 
-    var id: Int {
+    public var id: Int {
         self.hashValue
     }
 }
 
 extension ConnectionHistory: Hashable, Equatable {
 
-    func hash(into hasher: inout Hasher) {
+    public func hash(into hasher: inout Hasher) {
         hasher.combine(url)
         hasher.combine(token)
     }
 
-    static func == (lhs: ConnectionHistory, rhs: ConnectionHistory) -> Bool {
+    static public func == (lhs: ConnectionHistory, rhs: ConnectionHistory) -> Bool {
         return lhs.url == rhs.url && lhs.token == rhs.token
     }
 }
@@ -41,7 +41,7 @@ extension Sequence where Element == ConnectionHistory {
 
 extension Set where Element == ConnectionHistory {
 
-    mutating func update(room: Room) {
+    public mutating func update(room: Room) {
 
         guard let url = room.url,
               let token = room.token,

@@ -1,10 +1,17 @@
+//
+//  File.swift
+//  
+//
+//  Created by Kyaw Naing Tun on 22/12/2022.
+//
+
 import SwiftUI
 import KeychainAccess
 import Combine
 import LiveKit
 import Promises
 
-struct Preferences: Codable, Equatable {
+public struct Preferences: Codable, Equatable {
     var url = ""
     var token = ""
 
@@ -51,7 +58,7 @@ extension Keychain {
     }
 }
 
-class ValueStore<T: Codable & Equatable>: ObservableObject {
+public class ValueStore<T: Codable & Equatable>: ObservableObject {
 
     private let store: Keychain
     private let key: String
