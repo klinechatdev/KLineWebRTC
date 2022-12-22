@@ -4,7 +4,7 @@ import WebRTC
 import Promises
 
 // This class contains the logic to control behavior of the whole app.
-final class RoomContext: ObservableObject {
+public class RoomContext: ObservableObject {
 
     private let store: ValueStore<Preferences>
 
