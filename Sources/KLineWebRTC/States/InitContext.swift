@@ -10,7 +10,7 @@ extension ObservableObject where Self.ObjectWillChangePublisher == ObservableObj
 }
 
 // This class contains the logic to control behavior of the whole app.
-final class AppContext: ObservableObject {
+final class InitContext: ObservableObject {
 
     private let store: ValueStore<Preferences>
 

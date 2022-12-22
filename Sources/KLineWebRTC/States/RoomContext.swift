@@ -76,7 +76,7 @@ public class RoomContext: ObservableObject {
         print("RoomContext.deinit")
     }
 
-    func connect(entry: ConnectionHistory? = nil) -> Promise<Room> {
+    public func connect(entry: ConnectionHistory? = nil) -> Promise<Room> {
 
         if let entry = entry {
             url = entry.url
@@ -110,7 +110,7 @@ public class RoomContext: ObservableObject {
                                  roomOptions: roomOptions)
     }
     
-    func join(url: String, token: String) -> Promise<Room> {
+    public func join(url: String, token: String) -> Promise<Room> {
 
         let connectOptions = ConnectOptions(
             autoSubscribe: !publish && autoSubscribe, // don't autosubscribe if publish mode
@@ -139,14 +139,14 @@ public class RoomContext: ObservableObject {
                                  roomOptions: roomOptions)
     }
 
-    func disconnect() {
+    public func disconnect() {
         room.room.disconnect()
     }
 }
 
 extension RoomContext: RoomDelegate {
 
-    func room(_ room: Room, didUpdate connectionState: ConnectionState, oldValue: ConnectionState) {
+    public func room(_ room: Room, didUpdate connectionState: ConnectionState, oldValue: ConnectionState) {
 
         print("Did update connectionState \(connectionState) \(room.connectionState)")
 
