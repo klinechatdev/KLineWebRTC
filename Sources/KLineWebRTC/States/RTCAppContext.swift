@@ -14,31 +14,31 @@ public class RTCAppContext: ObservableObject {
 
     public let store: ValueStore<Preferences>
 
-    @Published var videoViewVisible: Bool = true {
+    @Published public var videoViewVisible: Bool = true {
         didSet { store.value.videoViewVisible = videoViewVisible }
     }
 
-    @Published var showInformationOverlay: Bool = false {
+    @Published public var showInformationOverlay: Bool = false {
         didSet { store.value.showInformationOverlay = showInformationOverlay }
     }
 
-    @Published var preferMetal: Bool = true {
+    @Published public var preferMetal: Bool = true {
         didSet { store.value.preferMetal = preferMetal }
     }
 
-    @Published var videoViewMode: VideoView.LayoutMode = .fit {
+    @Published public var videoViewMode: VideoView.LayoutMode = .fit {
         didSet { store.value.videoViewMode = videoViewMode }
     }
 
-    @Published var videoViewMirrored: Bool = false {
+    @Published public var videoViewMirrored: Bool = false {
         didSet { store.value.videoViewMirrored = videoViewMirrored }
     }
 
-    @Published var connectionHistory: Set<ConnectionHistory> = [] {
+    @Published public var connectionHistory: Set<ConnectionHistory> = [] {
         didSet { store.value.connectionHistory = connectionHistory }
     }
 
-    @Published var outputDevice: RTCAudioDevice = RTCAudioDevice.defaultDevice(with: .output) {
+    @Published public var outputDevice: RTCAudioDevice = RTCAudioDevice.defaultDevice(with: .output) {
         didSet {
             print("didSet outputDevice: \(String(describing: outputDevice))")
 
@@ -48,7 +48,7 @@ public class RTCAppContext: ObservableObject {
         }
     }
 
-    @Published var inputDevice: RTCAudioDevice = RTCAudioDevice.defaultDevice(with: .input) {
+    @Published public var inputDevice: RTCAudioDevice = RTCAudioDevice.defaultDevice(with: .input) {
         didSet {
             print("didSet inputDevice: \(String(describing: inputDevice))")
 
@@ -58,7 +58,7 @@ public class RTCAppContext: ObservableObject {
         }
     }
 
-    @Published var preferSpeakerOutput: Bool = false {
+    @Published public var preferSpeakerOutput: Bool = false {
         didSet { AudioManager.shared.preferSpeakerOutput = preferSpeakerOutput }
     }
 

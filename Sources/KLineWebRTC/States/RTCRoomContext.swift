@@ -4,7 +4,7 @@ import WebRTC
 import Promises
 
 // This class contains the logic to control behavior of the whole app.
-public class RoomContext: ObservableObject {
+public class RTCRoomContext: ObservableObject {
 
     private let store: ValueStore<Preferences>
 
@@ -13,39 +13,39 @@ public class RoomContext: ObservableObject {
     @Published var shouldShowError: Bool = false
     public var latestError: Error?
 
-    public let room = ExampleObservableRoom()
+    public let room = RTCObservableRoom()
 
-    @Published var url: String = "" {
+    @Published public var url: String = "" {
         didSet { store.value.url = url }
     }
 
-    @Published var token: String = "" {
+    @Published public var token: String = "" {
         didSet { store.value.token = token }
     }
 
     // RoomOptions
-    @Published var simulcast: Bool = true {
+    @Published public var simulcast: Bool = true {
         didSet { store.value.simulcast = simulcast }
     }
 
-    @Published var adaptiveStream: Bool = false {
+    @Published public var adaptiveStream: Bool = false {
         didSet { store.value.adaptiveStream = adaptiveStream }
     }
 
-    @Published var dynacast: Bool = false {
+    @Published public var dynacast: Bool = false {
         didSet { store.value.dynacast = dynacast }
     }
 
-    @Published var reportStats: Bool = false {
+    @Published public var reportStats: Bool = false {
         didSet { store.value.reportStats = reportStats }
     }
 
     // ConnectOptions
-    @Published var autoSubscribe: Bool = true {
+    @Published public var autoSubscribe: Bool = true {
         didSet { store.value.autoSubscribe = autoSubscribe}
     }
 
-    @Published var publish: Bool = false {
+    @Published public var publish: Bool = false {
         didSet { store.value.publishMode = publish }
     }
 
@@ -144,7 +144,7 @@ public class RoomContext: ObservableObject {
     }
 }
 
-extension RoomContext: RoomDelegate {
+extension RTCRoomContext: RoomDelegate {
 
     public func room(_ room: Room, didUpdate connectionState: ConnectionState, oldValue: ConnectionState) {
 

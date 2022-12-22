@@ -36,9 +36,9 @@ public class RTCObservableRoom: ObservableRoom {
     let jsonEncoder = JSONEncoder()
     let jsonDecoder = JSONDecoder()
 
-    @Published var focusParticipant: ObservableParticipant?
+    @Published public var focusParticipant: ObservableParticipant?
 
-    @Published var textFieldString: String = ""
+    @Published public var textFieldString: String = ""
 
     override init(_ room: Room = Room()) {
         super.init(room)
