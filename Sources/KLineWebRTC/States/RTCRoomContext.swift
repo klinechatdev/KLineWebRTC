@@ -10,7 +10,7 @@ public class RTCRoomContext: ObservableObject {
 
     // Used to show connection error dialog
     // private var didClose: Bool = false
-    @Published var shouldShowError: Bool = false
+    @Published public var shouldShowError: Bool = false
     public var latestError: Error?
 
     public let room = RTCObservableRoom()
