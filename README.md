@@ -72,7 +72,8 @@ room.remoteParticipants // ObservableParticipants
 //access local camera track state
 room.cameraTrackState.isPublished //bool
 room.cameraTrackState.isBusy //bool
-room.toggleCameraEnabled() // camera flip
+room.toggleCameraEnabled() // camera on/off
+room.switchCameraPosition() // camera flip (back cam <> front cam)
 
 //check local microphone track state
 room.microphoneTrackState.isPublished // bool
