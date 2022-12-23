@@ -25,7 +25,7 @@ To setup RTC app settings and input/output devices on initialization.
 
 #### RTCRoomContext
 
-To handle all of states related with room like room join/leave actions and status.
+To handle all of states related with room like room join/leave actions and status before connected to the room.
 
 ```swift
 @EnvironmentObject var roomCtx: RTCRoomContext
@@ -34,8 +34,14 @@ To handle all of states related with room like room join/leave actions and statu
 roomCtx.join(url: "wss://your_url", token: 'room_token').then { room in
     appCtx.connectionHistory.update(room: room)
 }
+
 //room leave
 roomCtx.disconnect()
+
+//handle room connection error
+roomCtx.shouldShowError // bool
+roomCtx.latestError // error message
+
 //access connection states
 roomCtx.room.room.connectionState
 // you can access the following 4 connection states
@@ -47,12 +53,14 @@ roomCtx.room.room.connectionState
 
 #### RTCObservableRoom
 
-To handle all of active states in current connected.
+To handle all of active states after connected in the room.
 
 ```swift
 @EnvironmentObject var room: RTCObservableRoom
-//get all participants
+//get all participants both Local and Remote
 room.allParticipants // ObservableParticipants
+
+// read more about the ObservableParticipants at the following section
 
 //get all remote participants
 room.remoteParticipants // ObservableParticipants
@@ -78,6 +86,10 @@ room.room.connectionState
 
 ## Native LiveKit APIs
 
+Import the LiveKit to use native APIs.
+```swift
+import LiveKit
+```
 #### CameraCapture Class
 You can browse more about CameraCapture Class [here](https://docs.livekit.io/client-sdk-swift/CameraCapturer/).
 
@@ -87,4 +99,12 @@ CameraCapture.canSwitchPosition()
 ```
 
 ### ObservableParticipants
-Related both Local and Remote participants(Track). Read more [here](https://docs.livekit.io/client-sdk-swift/ObservableParticipant/#observableparticipant.isspeaking)
+Related both Local and Remote participants. Read more [here](https://docs.livekit.io/client-sdk-swift/ObservableParticipant/#observableparticipant.isspeaking)
+
+### SwiftUIVideoView
+
+[Read more](https://docs.livekit.io/client-sdk-swift/SwiftUIVideoView/)
+
+### VideoView
+
+[Read more](https://docs.livekit.io/client-sdk-swift/VideoView/)
