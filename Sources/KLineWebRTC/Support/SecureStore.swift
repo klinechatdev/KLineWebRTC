@@ -11,7 +11,7 @@ import Combine
 import LiveKit
 import Promises
 
-public struct Preferences: Codable, Equatable {
+public struct RTCPreferences: Codable, Equatable {
     public var url = ""
     public var token = ""
 
@@ -58,7 +58,7 @@ extension Keychain {
     }
 }
 
-public class ValueStore<T: Codable & Equatable>: ObservableObject {
+public class RTCValueStore<T: Codable & Equatable>: ObservableObject {
 
     public let store: Keychain
     public let key: String

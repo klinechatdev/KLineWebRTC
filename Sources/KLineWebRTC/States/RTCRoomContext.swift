@@ -6,7 +6,7 @@ import Promises
 // This class contains the logic to control behavior of the whole app.
 public class RTCRoomContext: ObservableObject {
 
-    private let store: ValueStore<Preferences>
+    private let store: RTCValueStore<RTCPreferences>
 
     // Used to show connection error dialog
     // private var didClose: Bool = false
@@ -49,7 +49,7 @@ public class RTCRoomContext: ObservableObject {
         didSet { store.value.publishMode = publish }
     }
 
-    public init(store: ValueStore<Preferences>) {
+    public init(store: RTCValueStore<RTCPreferences>) {
         self.store = store
         room.room.add(delegate: self)
 

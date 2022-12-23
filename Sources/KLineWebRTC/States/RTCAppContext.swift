@@ -12,7 +12,7 @@ extension ObservableObject where Self.ObjectWillChangePublisher == ObservableObj
 // This class contains the logic to control behavior of the whole app.
 public class RTCAppContext: ObservableObject {
 
-    public let store: ValueStore<Preferences>
+    public let store: RTCValueStore<RTCPreferences>
 
     @Published public var videoViewVisible: Bool = true {
         didSet { store.value.videoViewVisible = videoViewVisible }
@@ -62,7 +62,7 @@ public class RTCAppContext: ObservableObject {
         didSet { AudioManager.shared.preferSpeakerOutput = preferSpeakerOutput }
     }
 
-    public init(store: ValueStore<Preferences>) {
+    public init(store: RTCValueStore<RTCPreferences>) {
         self.store = store
 
         store.onLoaded.then { preferences in
