@@ -2,6 +2,10 @@
 
 WebRTC Swift SDK for KLineChat
 
+## Example App
+
+Browse to [example](https://github.com/klinechatdev/klinewebrtc-swift-example) project repo.
+
 ## Installation
 
 Search and use it in your SPM `https://github.com/klinechatdev/KLineWebRTC.git`
