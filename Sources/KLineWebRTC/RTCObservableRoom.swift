@@ -14,7 +14,7 @@ import WebRTC
 import CoreImage.CIFilterBuiltins
 import ReplayKit
 
-extension ObservableParticipant {
+extension RTCObservableParticipant {
 
     public var mainVideoPublication: TrackPublication? {
         firstScreenSharePublication ?? firstCameraPublication
@@ -36,7 +36,7 @@ public class RTCObservableRoom: ObservableRoom {
     let jsonEncoder = JSONEncoder()
     let jsonDecoder = JSONDecoder()
 
-    @Published public var focusParticipant: ObservableParticipant?
+    @Published public var focusParticipant: RTCObservableParticipant?
 
     @Published public var textFieldString: String = ""
 
@@ -46,7 +46,7 @@ public class RTCObservableRoom: ObservableRoom {
     }
 
     @discardableResult
-    func unpublishAll() -> Promise<Void> {
+    public func unpublishAll() -> Promise<Void> {
         Promise(on: queue) { () -> Void in
             guard let localParticipant = self.room.localParticipant else { return }
             try awaitPromise(localParticipant.unpublishAll())
