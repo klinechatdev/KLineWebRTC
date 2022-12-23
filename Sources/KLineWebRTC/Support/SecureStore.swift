@@ -12,27 +12,27 @@ import LiveKit
 import Promises
 
 public struct Preferences: Codable, Equatable {
-    var url = ""
-    var token = ""
+    public var url = ""
+    public var token = ""
 
     // Connect options
-    var autoSubscribe = true
-    var publishMode = false
+    public var autoSubscribe = true
+    public var publishMode = false
 
     // Room options
-    var simulcast = true
-    var adaptiveStream = true
-    var dynacast = true
-    var reportStats = true
+    public var simulcast = true
+    public var adaptiveStream = true
+    public var dynacast = true
+    public var reportStats = true
 
     // Settings
-    var videoViewVisible = true
-    var showInformationOverlay = false
-    var preferMetal = true
-    var videoViewMode: VideoView.LayoutMode = .fit
-    var videoViewMirrored = false
+    public var videoViewVisible = true
+    public var showInformationOverlay = false
+    public var preferMetal = true
+    public var videoViewMode: VideoView.LayoutMode = .fit
+    public var videoViewMirrored = false
 
-    var connectionHistory = Set<ConnectionHistory>()
+    public var connectionHistory = Set<ConnectionHistory>()
 }
 
 let encoder = JSONEncoder()
@@ -42,7 +42,7 @@ let decoder = JSONDecoder()
 extension Keychain {
 
     @discardableResult
-    func get<T: Decodable>(_ key: String) -> Promise<T?> {
+    public func get<T: Decodable>(_ key: String) -> Promise<T?> {
         Promise(on: .global()) { () -> T? in
             guard let data = try self.getData(key) else { return nil }
             return try decoder.decode(T.self, from: data)
@@ -50,7 +50,7 @@ extension Keychain {
     }
 
     @discardableResult
-    func set<T: Encodable>(_ key: String, value: T) -> Promise<Void> {
+    public func set<T: Encodable>(_ key: String, value: T) -> Promise<Void> {
         Promise(on: .global()) { () -> Void in
             let data = try encoder.encode(value)
             try self.set(data, key: key)
@@ -60,10 +60,10 @@ extension Keychain {
 
 public class ValueStore<T: Codable & Equatable>: ObservableObject {
 
-    private let store: Keychain
-    private let key: String
-    private let message = ""
-    private weak var timer: Timer?
+    public let store: Keychain
+    public let key: String
+    public let message = ""
+    public weak var timer: Timer?
 
     public let onLoaded = Promise<T>.pending()
 
@@ -74,7 +74,7 @@ public class ValueStore<T: Codable & Equatable>: ObservableObject {
         }
     }
 
-    private var storeWithOptions: Keychain {
+    public var storeWithOptions: Keychain {
         store
             .accessibility(.whenUnlocked)
             .synchronizable(true)
