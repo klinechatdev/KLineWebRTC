@@ -5,9 +5,6 @@ import Promises
 
 // This class contains the logic to control behavior of the whole app.
 public class RTCRoomContext: ObservableObject {
-
-    private let store: RTCValueStore<RTCPreferences>
-
     // Used to show connection error dialog
     // private var didClose: Bool = false
     @Published public var shouldShowError: Bool = false
@@ -15,54 +12,26 @@ public class RTCRoomContext: ObservableObject {
 
     public let room = RTCObservableRoom()
 
-    @Published public var url: String = "" {
-        didSet { store.value.url = url }
-    }
+    @Published public var url: String = ""
 
-    @Published public var token: String = "" {
-        didSet { store.value.token = token }
-    }
+    @Published public var token: String = ""
 
     // RoomOptions
-    @Published public var simulcast: Bool = true {
-        didSet { store.value.simulcast = simulcast }
-    }
+    @Published public var simulcast: Bool = true
 
-    @Published public var adaptiveStream: Bool = false {
-        didSet { store.value.adaptiveStream = adaptiveStream }
-    }
+    @Published public var adaptiveStream: Bool = false
 
-    @Published public var dynacast: Bool = false {
-        didSet { store.value.dynacast = dynacast }
-    }
+    @Published public var dynacast: Bool = false
 
-    @Published public var reportStats: Bool = false {
-        didSet { store.value.reportStats = reportStats }
-    }
+    @Published public var reportStats: Bool = false
 
     // ConnectOptions
-    @Published public var autoSubscribe: Bool = true {
-        didSet { store.value.autoSubscribe = autoSubscribe}
-    }
+    @Published public var autoSubscribe: Bool = true
 
-    @Published public var publish: Bool = false {
-        didSet { store.value.publishMode = publish }
-    }
+    @Published public var publish: Bool = false
 
-    public init(store: RTCValueStore<RTCPreferences>) {
-        self.store = store
+    public init() {
         room.room.add(delegate: self)
-
-        store.onLoaded.then { preferences in
-            self.url = preferences.url
-            self.token = preferences.token
-            self.simulcast = preferences.simulcast
-            self.adaptiveStream = preferences.adaptiveStream
-            self.dynacast = preferences.dynacast
-            self.reportStats = preferences.reportStats
-            self.autoSubscribe = preferences.autoSubscribe
-            self.publish = preferences.publishMode
-        }
 
         #if os(iOS)
         UIApplication.shared.isIdleTimerDisabled = true

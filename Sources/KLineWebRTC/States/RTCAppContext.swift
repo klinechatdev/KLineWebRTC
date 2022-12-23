@@ -12,31 +12,17 @@ extension ObservableObject where Self.ObjectWillChangePublisher == ObservableObj
 // This class contains the logic to control behavior of the whole app.
 public class RTCAppContext: ObservableObject {
 
-    public let store: RTCValueStore<RTCPreferences>
+    @Published public var videoViewVisible: Bool = true
 
-    @Published public var videoViewVisible: Bool = true {
-        didSet { store.value.videoViewVisible = videoViewVisible }
-    }
+    @Published public var showInformationOverlay: Bool = false
 
-    @Published public var showInformationOverlay: Bool = false {
-        didSet { store.value.showInformationOverlay = showInformationOverlay }
-    }
+    @Published public var preferMetal: Bool = true
 
-    @Published public var preferMetal: Bool = true {
-        didSet { store.value.preferMetal = preferMetal }
-    }
+    @Published public var videoViewMode: VideoView.LayoutMode = .fit
 
-    @Published public var videoViewMode: VideoView.LayoutMode = .fit {
-        didSet { store.value.videoViewMode = videoViewMode }
-    }
+    @Published public var videoViewMirrored: Bool = false
 
-    @Published public var videoViewMirrored: Bool = false {
-        didSet { store.value.videoViewMirrored = videoViewMirrored }
-    }
-
-    @Published public var connectionHistory: Set<ConnectionHistory> = [] {
-        didSet { store.value.connectionHistory = connectionHistory }
-    }
+    @Published public var connectionHistory: Set<ConnectionHistory> = []
 
     @Published public var outputDevice: RTCAudioDevice = RTCAudioDevice.defaultDevice(with: .output) {
         didSet {
@@ -62,18 +48,7 @@ public class RTCAppContext: ObservableObject {
         didSet { AudioManager.shared.preferSpeakerOutput = preferSpeakerOutput }
     }
 
-    public init(store: RTCValueStore<RTCPreferences>) {
-        self.store = store
-
-        store.onLoaded.then { preferences in
-            self.videoViewVisible = preferences.videoViewVisible
-            self.showInformationOverlay = preferences.showInformationOverlay
-            self.preferMetal = preferences.preferMetal
-            self.videoViewMode = preferences.videoViewMode
-            self.videoViewMirrored = preferences.videoViewMirrored
-            self.connectionHistory = preferences.connectionHistory
-        }
-
+    public init() {
         Room.audioDeviceModule.setDevicesUpdatedHandler {
             print("devices did update")
             // force UI update for outputDevice / inputDevice
