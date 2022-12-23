@@ -14,7 +14,7 @@ import WebRTC
 import CoreImage.CIFilterBuiltins
 import ReplayKit
 
-extension RTCObservableParticipant {
+extension ObservableParticipant {
 
     public var mainVideoPublication: TrackPublication? {
         firstScreenSharePublication ?? firstCameraPublication
@@ -36,7 +36,7 @@ public class RTCObservableRoom: ObservableRoom {
     let jsonEncoder = JSONEncoder()
     let jsonDecoder = JSONDecoder()
 
-    @Published public var focusParticipant: RTCObservableParticipant?
+    @Published public var focusParticipant: ObservableParticipant?
 
     @Published public var textFieldString: String = ""
 
