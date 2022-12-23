@@ -18,7 +18,7 @@ let package = Package(
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
-        .package(name: "LiveKit", url: "https://github.com/livekit/client-sdk-swift.git", .upToNextMajor(from: "1.0.0")),
+        .package(name: "LiveKit", url: "https://github.com/livekit/client-sdk-swift.git", from: "1.0.3"),
         .package(name: "KeychainAccess", url: "https://github.com/kishikawakatsumi/KeychainAccess.git", .upToNextMajor(from: "4.2.2"))
     ],
     targets: [
