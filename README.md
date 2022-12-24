@@ -106,6 +106,12 @@ CameraCapture.canSwitchPosition()
 ### ObservableParticipants
 Related both Local and Remote participants. You can access status/events like `isSpeaking` and more events from Participants. Read more [here](https://docs.livekit.io/client-sdk-swift/ObservableParticipant/)
 
+```swift
+@ObservedObject var participant: ObservableParticipant
+// checking connection quality status
+participant.connectionQuality //.excellent, .good, .poor
+```
+
 ### SwiftUIVideoView
 
 [Read more](https://docs.livekit.io/client-sdk-swift/SwiftUIVideoView/)
